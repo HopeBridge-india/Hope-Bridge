@@ -1,0 +1,70 @@
+
+/* Light Theme + Responsive Design for HopeBridge */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+header {
+  background-color: #f2f2f2;
+  color: #222;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+nav a {
+  color: #0077cc;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  margin: 20px auto;
+  max-width: 1000px;
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #f0f0f0;
+  color: #555;
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+  margin-top: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  nav a {
+    display: block;
+    margin: 10px 0;
+  }
+
+  main {
+    padding: 15px;
+  }
+}
