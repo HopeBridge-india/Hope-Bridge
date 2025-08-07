@@ -1,70 +1,89 @@
 
-/* Light Theme + Responsive Design for HopeBridge */
-
-* {
-  box-sizing: border-box;
+body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #ffffff;
+  background-color: #f4f7f8;
   color: #333;
-  line-height: 1.6;
-  padding: 20px;
 }
 
-header {
-  background-color: #f2f2f2;
-  color: #222;
-  padding: 20px;
+header, footer {
+  background-color: #ffffff;
+  padding: 1em;
   text-align: center;
-  border-bottom: 2px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
-  color: #0077cc;
   margin: 0 10px;
   text-decoration: none;
-  font-weight: 500;
-}
-
-nav a:hover {
-  text-decoration: underline;
+  color: #007BFF;
 }
 
 main {
-  margin: 20px auto;
-  max-width: 1000px;
   padding: 20px;
-  background-color: #fafafa;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  max-width: 800px;
+  margin: auto;
 }
 
-footer {
-  text-align: center;
-  padding: 15px;
-  background-color: #f0f0f0;
-  color: #555;
-  font-size: 14px;
-  border-top: 1px solid #ddd;
-  margin-top: 30px;
+section {
+  margin-bottom: 30px;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 2s ease-in;
+}
+
+.slide-up {
+  animation: slideUp 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   body {
-    padding: 10px;
+    font-size: 16px;
   }
 
   nav a {
     display: block;
     margin: 10px 0;
-  }
-
-  main {
-    padding: 15px;
   }
 }
