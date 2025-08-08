@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us – HopeBridge India</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - HopeBridge</title>
+<link rel="stylesheet" href="styles/theme.css">
 </head>
 <body>
-  <header>
-    <h1>Contact Us</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="homepage.html">How We Help</a>
-    </nav>
-  </header>
 
-  <main>
-    <section>
-      <h2>We’re here to help</h2>
-      <p>Email: <a href="mailto:hopebridge.contactandhelp@gmail.com">hopebridge.contactandhelp@gmail.com</a></p>
-      <p>Phone (Anand Kumar Keshav): <a href="tel:+919279867797">+91 92798 67797</a></p>
-      <p>Phone (Aman Gupta): <a href="tel:+919517018491">+91 95170 18491</a></p>
-    </section>
-  </main>
+<header>
+  <h1>Contact Us</h1>
+</header>
 
-  <footer>
-    <p>© 2025 HopeBridge India</p>
-  </footer>
+<section>
+  <p>If you have questions, ideas, or need help — please reach out using the form below. We’ll respond within 24 hours.</p>
+
+  <form action="https://formspree.io/f/your-form-id" method="POST">
+    <label>Name:</label>
+    <input type="text" name="name" required style="width:100%;padding:10px;margin-bottom:1rem;">
+
+    <label>Email:</label>
+    <input type="email" name="email" required style="width:100%;padding:10px;margin-bottom:1rem;">
+
+    <label>Message:</label>
+    <textarea name="message" required style="width:100%;padding:10px;height:150px;"></textarea>
+
+    <button type="submit" class="btn">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2025 HopeBridge. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
