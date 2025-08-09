@@ -1,33 +1,668 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HopeBridge India</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope Bridge - The Helping Hands</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        .hidden { display: none; }
+        .active-page { display: block; }
+    </style>
 </head>
-<body>
-  <header>
-    <h1>HopeBridge India</h1>
-    <nav>
-      <a href="homepage.html">How We Help</a>
-      <a href="contacts.html">Contact Us</a>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="gradient-bg shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <img src="logo.jpg" alt="Hope Bridge Logo" class="w-10 h-10 rounded-full mr-3 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="bg-white rounded-full p-2 mr-3 hidden">
+                        <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                    </div>
+                    <h1 class="text-2xl font-bold text-white">Hope Bridge</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="showPage('home')" class="text-white hover:text-purple-200 transition duration-300 nav-btn">Home</button>
+                    <button onclick="showPage('about')" class="text-white hover:text-purple-200 transition duration-300 nav-btn">About</button>
+                    <button onclick="showPage('dashboard')" class="text-white hover:text-purple-200 transition duration-300 nav-btn">Dashboard</button>
+                    <button onclick="showPage('contact')" class="text-white hover:text-purple-200 transition duration-300 nav-btn">Contact</button>
+                </div>
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-purple-800 px-4 py-2">
+            <button onclick="showPage('home')" class="block text-white py-2 nav-btn">Home</button>
+            <button onclick="showPage('about')" class="block text-white py-2 nav-btn">About</button>
+            <button onclick="showPage('dashboard')" class="block text-white py-2 nav-btn">Dashboard</button>
+            <button onclick="showPage('contact')" class="block text-white py-2 nav-btn">Contact</button>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    <section>
-      <h2>Bridging Hope to the Needy</h2>
-      <p>We are a donation-based platform connecting people who want to help with those in need—humans and animals alike.</p>
-    </section>
-    <section>
-      <h2>Join Our Mission</h2>
-      <p>Your support matters. Together, we build a better world for everyone.</p>
-    </section>
-  </main>
+    <!-- HOME PAGE -->
+    <div id="homePage" class="active-page">
+        <!-- Hero Section -->
+        <section class="gradient-bg text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-5xl font-bold mb-6">The Helping Hands</h2>
+                <p class="text-xl mb-8 max-w-3xl mx-auto">Join our mission to help those in need. Request assistance or contribute to meaningful causes that make a real difference in people's lives.</p>
+                <div class="space-x-4">
+                    <button onclick="showRequestForm()" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">Request Help</button>
+                    <button onclick="showPage('dashboard')" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition duration-300">View Campaigns</button>
+                </div>
+            </div>
+        </section>
 
-  <footer>
-    <p>© 2025 HopeBridge India. All rights reserved.</p>
-  </footer>
-</body>
+        <!-- Stats Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                    <div class="p-6">
+                        <div class="text-4xl font-bold text-purple-600 mb-2">0</div>
+                        <div class="text-gray-600">People Helped</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-4xl font-bold text-purple-600 mb-2">₹0</div>
+                        <div class="text-gray-600">Total Raised</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-4xl font-bold text-purple-600 mb-2">0</div>
+                        <div class="text-gray-600">Active Campaigns</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-4xl font-bold text-purple-600 mb-2">0</div>
+                        <div class="text-gray-600">Donors</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">How Hope Bridge Works</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-white rounded-lg shadow-md card-hover">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-3">1. Submit Request</h4>
+                        <p class="text-gray-600">Share your story and let us know what kind of help you need. Our team reviews every request carefully.</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-lg shadow-md card-hover">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-3">2. Campaign Launch</h4>
+                        <p class="text-gray-600">We create a personalized campaign for your cause and start raising funds from our community of donors.</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-lg shadow-md card-hover">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-3">3. Receive Help</h4>
+                        <p class="text-gray-600">Once we reach your goal, we provide the assistance you need and keep you updated throughout the process.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Campaigns -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Recent Campaigns</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="recentCampaigns">
+                    <!-- Campaigns will be loaded here -->
+                </div>
+                <div class="text-center mt-8">
+                    <button onclick="showPage('dashboard')" class="bg-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-700 transition duration-300">View All Campaigns</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="aboutPage" class="hidden">
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-8 text-gray-800">About Hope Bridge</h2>
+                <div class="prose prose-lg mx-auto text-gray-600">
+                    <p class="text-xl mb-6">Hope Bridge is a compassionate platform dedicated to connecting people in need with generous donors who want to make a difference. We believe that everyone deserves help when they need it most.</p>
+                    
+                    <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Our Mission</h3>
+                    <p class="mb-6">To create a world where no one faces their challenges alone. We bridge the gap between those who need help and those who can provide it, fostering a community of mutual support and compassion.</p>
+                    
+                    <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">How We Operate</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg mb-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">1</span>
+                                <span><strong>Request Submission:</strong> Individuals submit help requests through our platform with detailed information about their situation.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">2</span>
+                                <span><strong>Verification Process:</strong> Our team carefully reviews and verifies each request to ensure authenticity and need.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">3</span>
+                                <span><strong>Campaign Creation:</strong> We create personalized donation campaigns with clear goals and transparent tracking.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">4</span>
+                                <span><strong>Community Fundraising:</strong> Our community of donors contributes to campaigns that resonate with them.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">5</span>
+                                <span><strong>Direct Assistance:</strong> Once goals are met, we provide direct assistance to beneficiaries with full transparency.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Transparency & Trust</h3>
+                    <p class="mb-6">We maintain complete transparency in our operations. Every donation is tracked, and donors can see exactly how their contributions are being used. Our dashboard provides real-time updates on campaign progress and fund distribution.</p>
+                    
+                    <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Types of Help We Provide</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-800 mb-2">Medical Assistance</h4>
+                            <p class="text-sm">Emergency medical treatments, surgeries, medications, and therapy costs.</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-800 mb-2">Education Support</h4>
+                            <p class="text-sm">School fees, books, supplies, and educational resources for students in need.</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-800 mb-2">Emergency Relief</h4>
+                            <p class="text-sm">Disaster relief, emergency housing, food assistance, and basic necessities.</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-800 mb-2">Community Projects</h4>
+                            <p class="text-sm">Local community improvements, infrastructure, and social development initiatives.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-lg text-center">
+                        <h4 class="text-xl font-semibold mb-2">Join Our Mission</h4>
+                        <p class="mb-4">Together, we can create positive change and help those who need it most.</p>
+                        <button onclick="showPage('contact')" class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition duration-300">Get Involved</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DASHBOARD PAGE -->
+    <div id="dashboardPage" class="hidden">
+        <section class="py-8 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800">Campaign Dashboard</h2>
+                    <div class="flex space-x-4">
+                        <select id="categoryFilter" onchange="filterCampaigns()" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            <option value="all">All Categories</option>
+                            <option value="medical">Medical</option>
+                            <option value="education">Education</option>
+                            <option value="emergency">Emergency</option>
+                            <option value="community">Community</option>
+                        </select>
+                        <select id="statusFilter" onchange="filterCampaigns()" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Dashboard Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-3 rounded-full">
+                                <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Active Campaigns</p>
+                                <p class="text-2xl font-semibold text-gray-900" id="activeCampaigns">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Total Raised</p>
+                                <p class="text-2xl font-semibold text-gray-900" id="totalRaised">₹0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="bg-purple-100 p-3 rounded-full">
+                                <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Total Donors</p>
+                                <p class="text-2xl font-semibold text-gray-900" id="totalDonors">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="bg-yellow-100 p-3 rounded-full">
+                                <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Completed</p>
+                                <p class="text-2xl font-semibold text-gray-900" id="completedCampaigns">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campaigns Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="campaignsGrid">
+                    <!-- Campaigns will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contactPage" class="hidden">
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-8 text-gray-800">Contact Us</h2>
+                <p class="text-xl text-center text-gray-600 mb-12">Have questions or want to get involved? We'd love to hear from you!</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Contact Form -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-gray-800">Send us a Message</h3>
+                        <form id="contactForm" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                                <select id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                    <option value="">Select a subject</option>
+                                    <option value="help-request">Request Help</option>
+                                    <option value="volunteer">Volunteer Opportunity</option>
+                                    <option value="donation">Donation Inquiry</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="general">General Question</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Tell us how we can help you..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-gray-800">Get in Touch</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Email</h4>
+                                    <p class="text-gray-600">hopebridge.contactandhelp@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Response Time</h4>
+                                    <p class="text-gray-600">We typically respond to all inquiries within 24-48 hours. For urgent requests, please mark your message as "Emergency" in the subject line.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-6 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg text-white">
+                            <h4 class="font-semibold mb-2">Emergency Assistance</h4>
+                            <p class="text-sm">If you need immediate help, please email us with "EMERGENCY" in the subject line. For life-threatening situations, contact your local emergency services immediately.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Request Help Modal -->
+    <div id="requestModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Request Help</h3>
+                    <button onclick="closeRequestForm()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <form id="helpRequestForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Type of Help Needed</label>
+                        <select required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select category</option>
+                            <option value="medical">Medical Assistance</option>
+                            <option value="education">Education Support</option>
+                            <option value="emergency">Emergency Relief</option>
+                            <option value="community">Community Project</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Amount Needed (₹)</label>
+                        <input type="number" min="1" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tell Your Story</label>
+                        <textarea rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500" placeholder="Please describe your situation and how the funds will be used..."></textarea>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button type="submit" class="flex-1 bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">Submit Request</button>
+                        <button type="button" onclick="closeRequestForm()" class="flex-1 bg-gray-300 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-400 transition duration-300">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="logo.jpg" alt="Hope Bridge Logo" class="w-8 h-8 rounded-full mr-3 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="bg-purple-600 rounded-full p-2 mr-3 hidden">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold">Hope Bridge</h3>
+                    </div>
+                    <p class="text-gray-300">The helping hands - connecting hearts, changing lives through compassionate giving and community support.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><button onclick="showPage('home')" class="text-gray-300 hover:text-white transition duration-300">Home</button></li>
+                        <li><button onclick="showPage('about')" class="text-gray-300 hover:text-white transition duration-300">About</button></li>
+                        <li><button onclick="showPage('dashboard')" class="text-gray-300 hover:text-white transition duration-300">Dashboard</button></li>
+                        <li><button onclick="showPage('contact')" class="text-gray-300 hover:text-white transition duration-300">Contact</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Help Categories</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>Medical Assistance</li>
+                        <li>Education Support</li>
+                        <li>Emergency Relief</li>
+                        <li>Community Projects</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>hopebridge.contactandhelp@gmail.com</li>
+                        <li>Remote-based charity organization</li>
+                        <li>Serving communities worldwide</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 Hope Bridge. All rights reserved. Made with ❤️ for those in need.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Campaign data for Hope Bridge - Starting fresh
+        const campaigns = [];
+
+        // Navigation functions
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('[id$="Page"]').forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('active-page');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId + 'Page');
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                targetPage.classList.add('active-page');
+            }
+            
+            // Update navigation
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-purple-200');
+            });
+            
+            // Load page-specific content
+            if (pageId === 'dashboard') {
+                loadCampaigns();
+            } else if (pageId === 'home') {
+                loadRecentCampaigns();
+            }
+            
+            // Close mobile menu
+            document.getElementById('mobileMenu').classList.add('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Campaign functions
+        function loadCampaigns() {
+            const grid = document.getElementById('campaignsGrid');
+            grid.innerHTML = '';
+            
+            campaigns.forEach(campaign => {
+                const percentage = Math.round((campaign.raised / campaign.goal) * 100);
+                const statusColor = campaign.status === 'urgent' ? 'bg-red-100 text-red-800' : 
+                                  campaign.status === 'completed' ? 'bg-green-100 text-green-800' : 
+                                  'bg-blue-100 text-blue-800';
+                
+                const campaignCard = `
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover campaign-card" data-category="${campaign.category}" data-status="${campaign.status}">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="text-4xl">${campaign.image}</div>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold ${statusColor}">${campaign.status.toUpperCase()}</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">${campaign.title}</h3>
+                            <p class="text-gray-600 mb-4 text-sm">${campaign.description}</p>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between text-sm text-gray-600 mb-2">
+                                    <span>₹${campaign.raised.toLocaleString()} raised</span>
+                                    <span>₹${campaign.goal.toLocaleString()} goal</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-purple-600 h-3 rounded-full progress-bar" style="width: ${percentage}%"></div>
+                                </div>
+                                <div class="flex justify-between text-sm text-gray-600 mt-2">
+                                    <span>${campaign.donors} donors</span>
+                                    <span>${campaign.daysLeft > 0 ? campaign.daysLeft + ' days left' : 'Completed'}</span>
+                                </div>
+                            </div>
+                            
+                            <button onclick="donateToCampaign(${campaign.id})" class="w-full bg-purple-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">
+                                ${campaign.status === 'completed' ? 'View Details' : 'Donate Now'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += campaignCard;
+            });
+        }
+
+        function loadRecentCampaigns() {
+            const container = document.getElementById('recentCampaigns');
+            const recentCampaigns = campaigns.slice(0, 3);
+            
+            container.innerHTML = '';
+            recentCampaigns.forEach(campaign => {
+                const percentage = Math.round((campaign.raised / campaign.goal) * 100);
+                const campaignCard = `
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                        <div class="p-6">
+                            <div class="text-4xl mb-4 text-center">${campaign.image}</div>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">${campaign.title}</h3>
+                            <p class="text-gray-600 mb-4 text-sm">${campaign.description}</p>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between text-sm text-gray-600 mb-2">
+                                    <span>₹${campaign.raised.toLocaleString()}</span>
+                                    <span>${percentage}%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-purple-600 h-2 rounded-full progress-bar" style="width: ${percentage}%"></div>
+                                </div>
+                            </div>
+                            
+                            <button onclick="donateToCampaign(${campaign.id})" class="w-full bg-purple-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">
+                                Donate Now
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += campaignCard;
+            });
+        }
+
+        function filterCampaigns() {
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            const campaignCards = document.querySelectorAll('.campaign-card');
+            
+            campaignCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const status = card.getAttribute('data-status');
+                
+                const categoryMatch = categoryFilter === 'all' || category === categoryFilter;
+                const statusMatch = statusFilter === 'all' || status === statusFilter;
+                
+                if (categoryMatch && statusMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function donateToCampaign(campaignId) {
+            const campaign = campaigns.find(c => c.id === campaignId);
+            if (campaign) {
+                alert(`Thank you for your interest in "${campaign.title}"! In a real implementation, this would redirect to a secure donation page.`);
+            }
+        }
+
+        // Modal functions
+        function showRequestForm() {
+            document.getElementById('requestModal').classList.remove('hidden');
+        }
+
+        function closeRequestForm() {
+            document.getElementById('requestModal').classList.add('hidden');
+        }
+
+        // Form submissions
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            this.reset();
+        });
+
+        document.getElementById('helpRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Your request has been submitted successfully! Our team will review it and contact you within 48 hours.');
+            closeRequestForm();
+            this.reset();
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRecentCampaigns();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('requestModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRequestForm();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c5c1cb762d7a01',t:'MTc1NDcyNjgxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
