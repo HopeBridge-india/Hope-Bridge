@@ -345,44 +345,37 @@
     </div>
 
     <!-- CONTACT PAGE -->
-    <div id="contactPage" class="hidden">
-        <section class="py-16 bg-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-bold text-center mb-8 text-gray-800">Contact Us</h2>
-                <p class="text-xl text-center text-gray-600 mb-12">Have questions or want to get involved? We'd love to hear from you!</p>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <!-- Contact Form -->
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-6 text-gray-800">Send us a Message</h3>
-        <form id="contactForm">
-  <input type="text" name="name" placeholder="Your Name" required>
-  <input type="email" name="email" placeholder="Your Email" required>
-  <textarea name="message" placeholder="Your Message" required></textarea>
-  <button type="submit">Send</button>
-</form>
-
 <script>
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
 
-    fetch("https://script.google.com/macros/s/AKfycbxjqy-vtqogGFX7rWA_FUdCpNOTZcf48Aaq9ePtPEnmagyNLBFMhFp43Uwd7MtzdObsqA/exec", {
-        method: "POST",
-        body: JSON.stringify({
-            name: this.name.value,
-            email: this.email.value,
-            message: this.message.value
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Stop normal form submission
+
+        const formData = new FormData(form);
+        const scriptURL = "https://script.google.com/macros/s/AKfycby_dArUVUT4CDz00BPtCdYlK1UCef6kPJscENA4vAlymqwl5DuiFWTaIJUKAXCXh_qJ/exec";
+
+        fetch(scriptURL, {
+            method: "POST",
+            body: formData
         })
-    })
-    .then(res => res.json())
-    .then(data => {
-        alert("Message sent successfully!");
-        window.location.href = "index.html"; // Redirect to home
-    })
-    .catch(err => alert("Error sending message."));
+        .then(response => {
+            if (response.ok) {
+                alert("✅ Message sent successfully!");
+                window.location.href = "index.html"; // Redirect to home
+            } else {
+                alert("⚠️ Failed to send message. Please try again.");
+            }
+        })
+        .catch(error => {
+            console.error("Error!", error.message);
+            alert("❌ Error sending message. Check console for details.");
+        });
+    });
 });
 </script>
-         </div>
+
+
                     
                     <!-- Contact Information -->
                     <div>
