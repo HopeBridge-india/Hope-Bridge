@@ -7,7 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-bottom: 1px solid #e2e8f0;
         }
         .hero-slider {
             position: relative;
@@ -33,7 +34,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.4) 0%, rgba(118, 75, 162, 0.4) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.9) 100%);
             z-index: 1;
         }
         .hero-content {
@@ -54,7 +55,7 @@
         .active-page { display: block; }
     </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-white font-sans">
     <!-- Navigation -->
     <nav class="gradient-bg shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,15 +67,15 @@
                             <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
                         </svg>
                     </div>
-                    <h1 class="text-2xl font-bold text-white">Hope Bridge</h1>
+                    <h1 class="text-2xl font-bold text-gray-800">Hope Bridge</h1>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <button onclick="showPage('home')" class="text-white hover:text-purple-200 transition duration-300 nav-btn">Home</button>
-                    <button onclick="showPage('about')" class="text-white hover:text-purple-200 transition duration-300 nav-btn">About</button>
-                    <button onclick="showPage('dashboard')" class="text-white hover:text-purple-200 transition duration-300 nav-btn">Dashboard</button>
-                    <button onclick="showPage('contact')" class="text-white hover:text-purple-200 transition duration-300 nav-btn">Contact</button>
+                    <button onclick="showPage('home')" class="text-gray-700 hover:text-purple-600 transition duration-300 nav-btn">Home</button>
+                    <button onclick="showPage('about')" class="text-gray-700 hover:text-purple-600 transition duration-300 nav-btn">About</button>
+                    <button onclick="showPage('dashboard')" class="text-gray-700 hover:text-purple-600 transition duration-300 nav-btn">Dashboard</button>
+                    <button onclick="showPage('contact')" class="text-gray-700 hover:text-purple-600 transition duration-300 nav-btn">Contact</button>
                 </div>
-                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                <button class="md:hidden text-gray-700" onclick="toggleMobileMenu()">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -82,18 +83,18 @@
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-purple-800 px-4 py-2">
-            <button onclick="showPage('home')" class="block text-white py-2 nav-btn">Home</button>
-            <button onclick="showPage('about')" class="block text-white py-2 nav-btn">About</button>
-            <button onclick="showPage('dashboard')" class="block text-white py-2 nav-btn">Dashboard</button>
-            <button onclick="showPage('contact')" class="block text-white py-2 nav-btn">Contact</button>
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 px-4 py-2">
+            <button onclick="showPage('home')" class="block text-gray-700 py-2 nav-btn hover:text-purple-600">Home</button>
+            <button onclick="showPage('about')" class="block text-gray-700 py-2 nav-btn hover:text-purple-600">About</button>
+            <button onclick="showPage('dashboard')" class="block text-gray-700 py-2 nav-btn hover:text-purple-600">Dashboard</button>
+            <button onclick="showPage('contact')" class="block text-gray-700 py-2 nav-btn hover:text-purple-600">Contact</button>
         </div>
     </nav>
 
     <!-- HOME PAGE -->
     <div id="homePage" class="active-page">
         <!-- Hero Section -->
-        <section class="hero-slider text-white py-20">
+        <section class="hero-slider text-gray-800 py-20">
             <!-- Background Images -->
             <div class="hero-slide active" style="background-image: url('1pic.jpg.png');"></div>
             <div class="hero-slide" style="background-image: url('2pic.jpg.png');"></div>
@@ -107,8 +108,8 @@
                 <h2 class="text-5xl font-bold mb-6">The Helping Hands</h2>
                 <p class="text-xl mb-8 max-w-3xl mx-auto">Join our mission to help those in need. Request assistance or contribute to meaningful causes that make a real difference in people's lives.</p>
                 <div class="space-x-4">
-                    <button onclick="showRequestForm()" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">Request Help</button>
-                    <button onclick="showPage('dashboard')" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition duration-300">View Campaigns</button>
+                    <button onclick="showRequestForm()" class="bg-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-700 transition duration-300">Request Help</button>
+                    <button onclick="showPage('dashboard')" class="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition duration-300">View Campaigns</button>
                 </div>
             </div>
         </section>
@@ -259,7 +260,7 @@
 
     <!-- DASHBOARD PAGE -->
     <div id="dashboardPage" class="hidden">
-        <section class="py-8 bg-gray-50">
+        <section class="py-8 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center mb-8">
                     <h2 class="text-3xl font-bold text-gray-800">Campaign Dashboard</h2>
@@ -380,7 +381,7 @@
                                 <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Tell us how we can help you..."></textarea>
                             </div>
                             <!-- Hidden fields for Form.co -->
-                            <input type="hidden" name="_redirect" value="">
+                            <input type="hidden" name="_redirect" value="javascript:void(0)">
                             <input type="hidden" name="_subject" value="New Contact Form Submission - Hope Bridge">
                             <input type="hidden" name="_template" value="table">
                             
@@ -718,5 +719,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e0e9d520823f04',t:'MTc1NTAxMTU3Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e1133e16778fbe',t:'MTc1NTAxMzI2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
